@@ -27,7 +27,7 @@ Patek е отбор от ентусиазирани играчи, които о�
  Точност: **92%**;
  Най-добър резултат: 1 хода (3 пъти!);
 
-Документацията в Microsoft Word[![Microsoft Word](https://img.shields.io/badge/-Microsoft%20Word-2B579A?logo=microsoft-word&logoColor=white&style=flat)](https://www.microsoft.com/microsoft-365/word): [Документация](./Документация_2.docx)
+Документацията в Microsoft Word[![Microsoft Word Logo](https://img.icons8.com/color/48/000000/microsoft-word.png)](https://www.microsoft.com/microsoft-365/word): [Документация](./Документация_2.docx)
 
  🗂️Използвани инструменти за нашата документация, презентации и комуникация:
  [![Microsoft Teams](https://img.shields.io/badge/-Microsoft%20Teams-6264A7?logo=microsoft-teams&logoColor=white&style=flat)](https://www.microsoft.com/en/microsoft-teams/group-chat-software)
