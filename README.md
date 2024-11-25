@@ -1,5 +1,8 @@
-Patek - Wordle Team ⬜ 🟩 🟥   ![Описание на изображението](![image](https://github.com/user-attachments/assets/710291ac-deb1-4180-a06d-cec97feb98b3)
+Patek - Wordle Team ⬜ 🟩 🟥  ![Patek Logo](![image](https://github.com/user-attachments/assets/9ad9e5b2-1678-4071-98ae-fc4602866c2d)
 )
+
+
+
 Добре дошли в официалното хранилище на отбора Patek, създаден специално за участие и състезания в играта Wordle! 
 
 🏆За нас:
