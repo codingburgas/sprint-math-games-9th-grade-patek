@@ -167,6 +167,13 @@ int main() {
         {
             while (true) {
                 system("cls");
+                cout << "======================== WORDLE =========================\n";
+                cout << "|        Welcome to the Wordle Game Challenge!         |\n";
+                cout << "| Guess the hidden 5-letter  within 6 attempts!    |\n";
+                cout << "| Match colors indicate:                               |\n";
+                cout << "| - Green: Correct letter in the correct position.     |\n";
+                cout << "| - Yellow: Correct letter in the wrong position.      |\n";
+                cout << "| - No color: No match for the letter.                 |\n";
                 cout << "===================== WORDLE MENU =====================" <<endl;
                 cout << "1. Play Wordle with words" << endl;
                 cout << "2. Play Wordle with numbers" << endl;
@@ -192,5 +199,3 @@ int main() {
         }
     }
 }
-
-
