@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <windows.h>
+#include <conio.h>
 
 
 using namespace std;
@@ -14,15 +16,20 @@ const int NOT_MATCH = 0;
 const int PARTIAL_MATCH = 1;
 const int MATCH = 2;
 
+void setColor(int textColor) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, textColor);
+}
+
 
 
 // WORDLE С ДУМИ
 
-const vector<string> words = {"apple", "grape", "peach", "lemon", "cherry", "melon", "mango", "berry",
+const vector<string> words = { "apple", "grape", "peach", "lemon", "cherry", "melon", "mango", "berry",
                               "candy", "juice", "sweet", "zesty", "stone", "pearl", "fruit", "piano", "lucky",
-                              "taste", "beach", "night", "happy", "liver", "dream", "flame", "grape", "shine", "blast"};
+                              "taste", "beach", "night", "happy", "liver", "dream", "flame", "grape", "shine", "blast" };
 
-bool isValidWord(const string &word) {
+bool isValidWord(const string& word) {
     return word.length() == WORD_LENGTH && word.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ") == string::npos;
 }
 
@@ -37,13 +44,13 @@ string getRandomNumber() {
     return number;
 }
 
-bool isValidNumber(const string &number) {
+bool isValidNumber(const string& number) {
     return number.length() == NUMBER_LENGTH && number.find_first_not_of("0123456789") == string::npos; //Ако и двете условия са изпълнени, връща true иначе — false.
 }
 
 // ОБЩА ЛОГИКА ЗА СЪВПАДЕНИЯ
 
-void markMatch(vector<vector<int>> &matches, int tryIndex, string target, string guess) {
+void markMatch(vector<vector<int>>& matches, int tryIndex, string target, string guess) {
     for (int i = 0; i < guess.length(); i++) {
         matches[tryIndex][i] = NOT_MATCH;
     }
@@ -53,7 +60,8 @@ void markMatch(vector<vector<int>> &matches, int tryIndex, string target, string
                 if (i == j) {
                     matches[tryIndex][j] = MATCH;
                     break;
-                } else {
+                }
+                else {
                     matches[tryIndex][j] = PARTIAL_MATCH;
                 }
             }
@@ -61,7 +69,7 @@ void markMatch(vector<vector<int>> &matches, int tryIndex, string target, string
     }
 }
 
-bool isAllMatch(const string &target, const string &guess) {
+bool isAllMatch(const string& target, const string& guess) {
     return target == guess;
 }
 
@@ -69,7 +77,7 @@ bool isAllMatch(const string &target, const string &guess) {
 
 void printWordle(vector<string> tries, vector<vector<int>> matches, int currentTry, bool isNumberGame) {
     cout << (isNumberGame ? "===================== NUMBER GUESS =====================\n"
-                          : "===================== WORDLE GAME =====================\n");
+        : "===================== WORDLE GAME =====================\n");
 
     for (int i = 0; i <= currentTry && i < tries.size(); i++) {
         string separator = "|";
@@ -82,7 +90,8 @@ void printWordle(vector<string> tries, vector<vector<int>> matches, int currentT
             char value = tries[i][j];
             if (matches[i][j] == PARTIAL_MATCH) {
                 text += "\033[33m"; // Жълт за частично съвпадение
-            } else if (matches[i][j] == MATCH) {
+            }
+            else if (matches[i][j] == MATCH) {
                 text += "\033[32m"; // Зелен за пълно съвпадение
             }
             text += "  ";
@@ -115,10 +124,10 @@ void playWordle(bool isNumberGame) {
     while (currentTry < maxTries) {
         do {
             cout << "Enter your " << (isNumberGame ? "number" : "word")
-                 << " (" << (isNumberGame ? NUMBER_LENGTH : WORD_LENGTH) << "-length) or Q to quit: ";
+                << " (" << (isNumberGame ? NUMBER_LENGTH : WORD_LENGTH) << "-length) or Q to quit: ";
             getline(cin, input);
 
-            for (char &c : input) {
+            for (char& c : input) {
                 c = toupper(c); //преобразуване на всички букви в главни
             }
 
@@ -152,7 +161,7 @@ void playWordle(bool isNumberGame) {
 int main() {
 
     {
-        system("cls");
+        setColor(2);
         cout << "| ==================================================================================|" << endl;
         cout << "|  %%%%%%%%                         %%%%%%%%%%%%%%                     %%      %%   |" << endl;
         cout << "|  %%       %%           %%%%             %%         %%%%%%%%%%        %%     %%    | " << endl;
@@ -163,11 +172,11 @@ int main() {
         cout << "|  %%             %%             %%       %%         %%                %%      %%   |" << endl;
         cout << "|  %%            %%               %%      %%         %%%%%%%%%%        %%       %%  |" << endl;
         cout << "| ==================================================================================|" << endl;
-
+        setColor(15);
         cout << "|==========================================================================|" << endl;
         cout << "|   %%       %%                                %%                          |" << endl;
-        cout << "|   %% | %%  %%                                %%                          |" << endl;
-        cout << "|   %% |%%%  %%    %%%%%    %%%%%%  %%%%%%%    %%    %%%%%%                |" << endl;
+        cout << "|   %%  %%   %%                                %%                          |" << endl;
+        cout << "|   %%  %%%  %%    %%%%%    %%%%%%  %%%%%%%    %%    %%%%%%                |" << endl;
         cout << "|   %% %% %% %%  %%     %%  %%      %%     %%  %%   %%     %%              |" << endl;
         cout << "|   %%%%   %%%%  %%     %%  %%      %%     %%  %%   %%%%%%%%               |" << endl;
         cout << "|   %%%     %%%  %%     %%  %%      %%     %%  %%   %%                     |" << endl;
@@ -177,7 +186,7 @@ int main() {
 
         {
             while (true) {
-
+                setColor(6);
                 cout << "======================== WORDLE ========================\n";
                 cout << "|        Welcome to the Wordle Game Challenge!         |\n";
                 cout << "| Guess the hidden 5-letter  within 6 attempts!        |\n";
@@ -185,7 +194,7 @@ int main() {
                 cout << "| - Green: Correct letter in the correct position.     |\n";
                 cout << "| - Yellow: Correct letter in the wrong position.      |\n";
                 cout << "| - No color: No match for the letter.                 |\n";
-                cout << "===================== WORDLE MENU =====================" <<endl;
+                cout << "===================== WORDLE MENU =====================" << endl;
                 cout << "1. Play Wordle with words" << endl;
                 cout << "2. Play Wordle with numbers" << endl;
                 cout << "3. Quit" << endl;
@@ -198,12 +207,15 @@ int main() {
 
                 if (choice == 1) {
                     playWordle(false); // Игра с думи
-                } else if (choice == 2) {
+                }
+                else if (choice == 2) {
                     playWordle(true); // Игра с числа
-                } else if (choice == 3) {
+                }
+                else if (choice == 3) {
                     cout << "Thank you for playing! Goodbye!" << endl;
                     break;
-                } else {
+                }
+                else {
                     cout << "Invalid option. Try again.\n";
                 }
             }
